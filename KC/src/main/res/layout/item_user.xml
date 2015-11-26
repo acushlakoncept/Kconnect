@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp"
+    tools:context="com.acushlakoncept.kconnect.SelectUsersActivity">
+
+    <ImageView
+        android:id="@+id/user_image"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/leftpane1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_profile"
+        android:padding="4dp"
+         />
+
+    <LinearLayout
+        android:id="@+id/leftpane1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/listindicator1"
+        android:layout_toRightOf="@+id/user_image"
+        android:orientation="vertical"
+        android:padding="1dp">
+
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="Name" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="phone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/res_dis"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/email"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="Email" />
+
+        <TextView
+            android:id="@+id/address"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="Address" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/listindicator1"
+        android:layout_width="7dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignBottom="@+id/leftpane1"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/darker_gray"
+        />
+
+
+</RelativeLayout>

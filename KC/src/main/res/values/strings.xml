@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Please put your application's app ID and keys here -->
+    <string name="parse_app_id">9MKt3w9bTDu0ZP4oKeFOkjsD1bIEhpg2ulI4Pq7j</string>
+    <string name="parse_client_key">W8iBsZihdEkH5AXtKk701vVel2ElLPCB8Dx6n12D</string>
+    <string name="facebook_app_id">201036756899777</string>
+    <string name="twitter_consumer_key">YOUR_TWITTER_CONSUMER_KEY</string>
+    <string name="twitter_consumer_secret">YOUR_TWITTER_CONSUMER_SECRET</string>
+
+    <string name="app_name">Kconnect</string>
+    <string name="title_activity_signup">Sign Up</string>
+    <string name="profile_proceed_button_label">Proceed to Profile</string>
+    <string name="profile_logo_content_description">Logo</string>
+    <string name="profile_title_logged_in">Your are logged in as</string>
+    <string name="profile_logout_button_label">Log out</string>
+    <string name="profile_title_logged_out">You must be logged in to view your profile</string>
+    <string name="profile_login_button_label">Log in</string>
+
+
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_friends">Friends</string>
+    <string name="nav_item_notifications">Messages</string>
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_friends</item>
+        <item>@string/nav_item_notifications</item>
+    </string-array>
+
+    <string name="title_messages">Messages</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_home">Home</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_login_or_signup">Log In or Sign Up</string>
+    <string name="title_activity_authenticate">Log In</string>
+    <string name="title_activity_select_users">Select Users</string>
+    <string name="title_activity_add_link">Add a Link</string>
+    <string name="title_forget_password">Forget Password</string>
+    <string name="title_reset_password">Reset Password</string>
+    <string name="info_reset_password_success">An email was successfully sent with reset instructions</string>
+    <string name="info_reset_password_failure">Something went wrong, please try again</string>
+    <string name="loginButtonLabel">Log In</string>
+    <string name="password_hint">password</string>
+    <string name="email_address_hint">email address</string>
+    <string name="ab_refresh">Refresh</string>
+    <string name="ab_add">Add</string>
+    <string name="ab_follow">Follow</string>
+    <string name="ab_logout">Log Out</string>
+    <string name="signup_button_label">Sign Up</string>
+    <string name="login_button_label">Log In</string>
+    <string name="name">Name</string>
+    <string name="address">Your Address</string>
+    <string name="phone">Phone</string>
+    <string name="desc_acushla_logo">Kconnect Logo</string>
+</resources>
