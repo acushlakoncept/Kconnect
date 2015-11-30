@@ -7,17 +7,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -27,6 +27,7 @@ public class SelectUsersActivity extends ListActivity {
 	
 	protected ParseObject[] mUsers;	
 	protected ProgressBar mProgressBar;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,24 +43,6 @@ public class SelectUsersActivity extends ListActivity {
 		mProgressBar.setVisibility(View.VISIBLE);
 
 		final Users users = new Users();
-
-    	/*
-    	 * Get ParseUsers using ParseUser.getQuery();
-    	 */
-
-
-
-		/*ParseQuery<ParseUser> query = ParseUser.getQuery();
-		query.findInBackground(new FindCallback<ParseUser>() {
-			@Override
-			public void done(List<ParseUser> userObjects, ParseException error) {
-				mProgressBar.setVisibility(View.INVISIBLE);
-				UsersAdapter adapter = new UsersAdapter(SelectUsersActivity.this, mUsers);
-				setListAdapter(adapter);
-			}
-		});*/
-
-
 
 		/*ParseQuery<ParseUser> query = ParseUser.getQuery();
 		query.findInBackground(new FindCallback<ParseUser>() {
@@ -87,20 +70,31 @@ public class SelectUsersActivity extends ListActivity {
 		});*/
 
 
-		ParseQuery<ParseUser> query = ParseUser.getQuery();
+		/*ParseQuery<ParseUser> query = ParseUser.getQuery();
 		query.findInBackground(new FindCallback<ParseUser>() {
 			@Override
 			public void done(List<ParseUser> userObjects, ParseException error) {
 				mProgressBar.setVisibility(View.INVISIBLE);
 				if (userObjects != null) {
 					ArrayList<HashMap<String, String>> articles = new ArrayList<HashMap<String, String>>();
+					ParseUser currentUser = ParseUser.getCurrentUser();
+					//String currentUser = parseUser.getCurrentUser().toString();
+
 					for (ParseObject result : userObjects) {
 						HashMap<String, String> article = new HashMap<String, String>();
-						article.put("name",
-								result.getString("name"));
-						article.put("username",
-								result.getString("username"));
-						articles.add(article);
+
+						if (result.getString("username").equals(currentUser.getUsername())){
+
+							// Do nothing
+
+						} else {
+							article.put("name",
+									result.getString("name"));
+							article.put("username",
+									result.getString("username"));
+							articles.add(article);
+						}
+
 					}
 					SimpleAdapter adapter = new SimpleAdapter(
 							getApplicationContext(), articles,
@@ -112,6 +106,41 @@ public class SelectUsersActivity extends ListActivity {
 
 				} else {
 					Log.e("App", "Error: ");
+				}
+			}
+		});*/
+
+
+
+		ParseQuery query = ParseUser.getQuery();
+		query.orderByDescending("createdAt");
+		query.findInBackground(new FindCallback<ParseObject>() {
+			@Override
+			public void done(List<ParseObject> objects, ParseException e) {
+				mProgressBar.setVisibility(View.INVISIBLE);
+
+				if (e == null) {
+					objects = removeCurrentUser(objects);
+					mUsers = objects.toArray(new ParseObject[0]);
+
+					// Get user relations
+					ParseRelation userRelations = ParseUser.getCurrentUser().getRelation("UserRelation");
+					userRelations.getQuery().findInBackground(new FindCallback<ParseObject>() {
+						@Override
+						public void done(List<ParseObject> results, ParseException e) {
+							if (e == null) {
+								UsersAdapter2 adapter = new UsersAdapter2(getApplicationContext(), mUsers, new ArrayList<ParseObject>(results));
+								setListAdapter(adapter);
+							}
+							else {
+								Log.e(TAG, "Exception caught!", e);
+							}
+						}
+					});
+				}
+				else {
+					// Something went wrong.
+					Toast.makeText(SelectUsersActivity.this, "Sorry, there was an error getting users!", Toast.LENGTH_LONG).show();
 				}
 			}
 		});

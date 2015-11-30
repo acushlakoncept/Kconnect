@@ -10,6 +10,7 @@ dependencies {
     compile rootProject.ext.parseFacebookUtils
     compile rootProject.ext.parseTwitterUtils
     compile files('libs/android-smart-image-view-1.0.0.jar')
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
 
 android {

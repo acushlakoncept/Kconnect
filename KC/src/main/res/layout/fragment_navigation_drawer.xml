@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:background="@color/colorPrimary">
 
-        <com.parse.ParseImageView
+        <ImageView
             android:id="@+id/nav_profile_img"
             android:layout_width="100dp"
             android:layout_height="100dp"

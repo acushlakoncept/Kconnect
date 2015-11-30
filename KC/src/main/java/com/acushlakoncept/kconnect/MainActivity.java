@@ -6,25 +6,27 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
+import com.squareup.picasso.Picasso;
 
 
-
-public class MainActivity extends ActionBarActivity implements FragmentDrawer.FragmentDrawerListener {
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
     private static String TAG = MainActivity.class.getSimpleName();
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
     TextView mUserName;
+    ImageView navImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +35,19 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mUserName = (TextView)findViewById(R.id.user_name);
+        navImg = (ImageView)findViewById(R.id.nav_profile_img);
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+
+        /*String hash = ChatListAdapter.MD5Util.md5Hex(currentUser.getUsername());
+        Log.w("Hash ", " - " + hash);
+        Picasso.with(this).load("http://www.gravatar.com/avatar" + hash).into(navImg);*/
+
+
+        Picasso.with(MainActivity.this).load(ChatListAdapter.getProfileUrl(currentUser.getUsername())).into(navImg);
 
 
 
@@ -104,6 +116,8 @@ public class MainActivity extends ActionBarActivity implements FragmentDrawer.Fr
             case 1:
                 startActivity(new Intent(getApplicationContext(), SelectUsersActivity.class));
                 break;
+            case 2:
+                startActivity(new Intent(getApplicationContext(), ChatActivity.class));
             default:
                 break;
         }

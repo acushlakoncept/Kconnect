@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/kc_bg"
     tools:context=".LoginOrSignupActivity" >
 
     <ImageView
@@ -13,7 +13,6 @@
         android:contentDescription="Kconnect Logo"
         android:scaleType="center"
         android:src="@drawable/logo" />
-
 
 
     <LinearLayout

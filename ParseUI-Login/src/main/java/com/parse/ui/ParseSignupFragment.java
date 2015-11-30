@@ -40,13 +40,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 import java.io.BufferedInputStream;
@@ -259,7 +255,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
           R.plurals.com_parse_ui_password_too_short_toast,
           minPasswordLength, minPasswordLength));
     } else if (passwordAgain.length() == 0) {
-      showToast(R.string.com_parse_ui_reenter_password_toast);
+
     } else if (!password.equals(passwordAgain)) {
       showToast(R.string.com_parse_ui_mismatch_confirm_password_toast);
       confirmPasswordField.selectAll();

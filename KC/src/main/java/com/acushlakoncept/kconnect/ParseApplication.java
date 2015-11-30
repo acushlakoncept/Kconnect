@@ -23,9 +23,9 @@ package com.acushlakoncept.kconnect;
 
 import android.app.Application;
 
-import com.acushlakoncept.kconnect.R;
 import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseObject;
 import com.parse.ParseTwitterUtils;
 
 
@@ -35,6 +35,10 @@ public class ParseApplication extends Application {
     super.onCreate();
     // Required - Initialize the Parse SDK
     Parse.initialize(this);
+
+    // Register your parse models here
+    ParseObject.registerSubclass(Message.class);
+
 
     Parse.setLogLevel(Parse.LOG_LEVEL_DEBUG);
 

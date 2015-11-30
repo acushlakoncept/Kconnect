@@ -2,8 +2,13 @@
 <resources>
 
     <!-- Please put your application's app ID and keys here -->
+   <!-- <string name="parse_app_id">ZqkJ7IsAbLUWRjbTbfJpV39BIzuvnNnBdS8zcbzT</string>
+    <string name="parse_client_key">rpNdrVMdgtRUbyjUHr4feTFNO4pYGPSutSJcIMgE</string>-->
+
     <string name="parse_app_id">9MKt3w9bTDu0ZP4oKeFOkjsD1bIEhpg2ulI4Pq7j</string>
     <string name="parse_client_key">W8iBsZihdEkH5AXtKk701vVel2ElLPCB8Dx6n12D</string>
+
+
     <string name="facebook_app_id">201036756899777</string>
     <string name="twitter_consumer_key">YOUR_TWITTER_CONSUMER_KEY</string>
     <string name="twitter_consumer_secret">YOUR_TWITTER_CONSUMER_SECRET</string>
@@ -60,4 +65,8 @@
     <string name="address">Your Address</string>
     <string name="phone">Phone</string>
     <string name="desc_acushla_logo">Kconnect Logo</string>
+    <string name="message_hint">Say anything</string>
+    <string name="send">Send</string>
+    <string name="profile_me">My Profile Pic</string>
+    <string name="profile_other">Other profile pic</string>
 </resources>

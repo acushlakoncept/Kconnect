@@ -1,15 +1,24 @@
 package com.acushlakoncept.kconnect;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.GetCallback;
+import com.parse.GetDataCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseImageView;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 /**
@@ -21,6 +30,7 @@ public class HomeFragment extends Fragment {
     String uname;
     ImageView mProfileImg;
     ParseImageView imgProfile;
+    String imgObjectId;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -40,82 +50,54 @@ public class HomeFragment extends Fragment {
 
         mLabel = (TextView)rootView.findViewById(R.id.label);
        // mProfileImg = (ImageView)rootView.findViewById(R.id.profile_img);
-        imgProfile = (ParseImageView) rootView.findViewById(R.id.nav_profile_img);
+        imgProfile = (ParseImageView) rootView.findViewById(R.id.imgProfile);
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
             // do stuff with the user
             uname = currentUser.getUsername();
 
-            mLabel.setText("Welcome " + currentUser.getString("name") + "\n You are logged in as " +
+            mLabel.setText("Welcome! \n" + currentUser.getString("name") + "\n You are logged in as \n" +
                     currentUser.getUsername());
 
-            /*ParseObject object = new ParseObject("ImageUpload");
-            ParseFile image = object.getParseFile("ImageFile");
-            //final ParseImageView imgProfile = (ParseImageView)rootView.findViewById(R.id.imgProfile);
-            imgProfile.setParseFile(image);
-            imgProfile.loadInBackground(new GetDataCallback() {
-                public void done(byte[] data, ParseException e) {
-                    // The image is loaded and displayed!
-                    int oldHeight = imgProfile.getHeight();
-                    int oldWidth = imgProfile.getWidth();
-                    Log.v("LOG!!!!!!", "imageView height = " + oldHeight);      // DISPLAYS 90 px
-                    Log.v("LOG!!!!!!", "imageView width = " + oldWidth);        // DISPLAYS 90 px
-                }
-            });*/
 
-/*
             // Locate the class table named "ImageUpload" in Parse.com
             ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                     "ImageUpload");
+            query.whereEqualTo("ImageName", currentUser.getUsername());
 
-            // Locate the objectId from the class
-            query.getInBackground("oamwwmYYDf",
-                    new GetCallback<ParseObject>() {
+            query.getInBackground("JctH5xJb1P", new GetCallback<ParseObject>() {
 
-                        public void done(ParseObject object,
-                                         ParseException e) {
-                            // TODO Auto-generated method stub
+                        public void done(ParseObject object, ParseException e) {
+                            // Locate the column named "ImageName" and set the string
+                            ParseFile fileObject = (ParseFile) object.get("ImageFile");
+                            fileObject.getDataInBackground(new GetDataCallback() {
 
-                            // Locate the column named "ImageName" and set
-                            // the string
-                            ParseFile fileObject = (ParseFile) object
-                                    .get("ImageFile");
-                            fileObject
-                                    .getDataInBackground(new GetDataCallback() {
+                                public void done(byte[] data,
+                                                 ParseException e) {
+                                    if (e == null) {
+                                        Log.d("test", "We've got data in data.");
+                                        // Decode the Byte[] into Bitmap
+                                        Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
 
-                                        public void done(byte[] data,
-                                                         ParseException e) {
-                                            if (e == null) {
-                                                Log.d("test",
-                                                        "We've got data in data.");
-                                                // Decode the Byte[] into
-                                                // Bitmap
-                                                Bitmap bmp = BitmapFactory
-                                                        .decodeByteArray(
-                                                                data, 0,
-                                                                data.length);
+                                        // Get the ImageView from
+                                        // main.xml
+                                        // ImageView image = (ImageView) findViewById(R.id.image);
 
-                                                // Get the ImageView from
-                                                // main.xml
-                                               // ImageView image = (ImageView) findViewById(R.id.image);
+                                        // Set the Bitmap into the
+                                        // ImageView
+                                        imgProfile.setImageBitmap(bmp);
 
-                                                // Set the Bitmap into the
-                                                // ImageView
-                                                imgProfile.setImageBitmap(bmp);
+                                        // Close progress dialog
+                                        // progressDialog.dismiss();
 
-                                                // Close progress dialog
-                                               // progressDialog.dismiss();
-
-                                            } else {
-                                                Log.d("test",
-                                                        "There was a problem downloading the data.");
-                                            }
-                                        }
-                                    });
+                                    } else {
+                                        Log.d("test", "There was a problem downloading the data.");
+                                    }
+                                }
+                            });
                         }
                     });
-*/
 
 
         } else {

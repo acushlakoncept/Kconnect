@@ -16,13 +16,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -52,14 +52,20 @@ public class SignUpActivity extends AppCompatActivity {
     protected Button mButton;
     protected ProgressBar mProgressBar;
 
+    private static final int PICK_IMAGE = 100;
     private static int RESULT_LOAD_CAMERA_IMAGE = 2;
     private static int RESULT_LOAD_GALLERY_IMAGE = 1;
+    private static final int DEFAULT_MIN_PASSWORD_LENGTH = 6;
+    private static final String USER_OBJECT_NAME_FIELD = "name";
+    private static final String USER_OBJECT_PHONE_FIELD = "phone";
+    private static final String USER_OBJECT_ADDRESS_FIELD = "address";
+
     private String mCurrentPhotoPath;
-    private ImageView imgPhoto;
-    private Button btnUploadImage;
+    private ParseImageView imgPhoto;
     private File cameraImageFile;
     private TextView mTextView;
     private Toolbar mToolbar;
+
 
     @Override
     public void onActivityResult (int requestCode, int resultCode, Intent data) {
@@ -117,7 +123,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        imgPhoto = (ImageView)findViewById(R.id.imgPhoto);
+        imgPhoto = (ParseImageView)findViewById(R.id.imgPhoto);
         imgPhoto.setOnClickListener(chooseImageListener);
 
         mEmailField = (EditText) findViewById(R.id.email);

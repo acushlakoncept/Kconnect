@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     android:padding="5dp">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"

@@ -3,26 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background"
-    tools:context=".AuthenticateActivity" >
-
+    android:background="@drawable/kc_bg" >
 
 
     <LinearLayout
         android:orientation="vertical"
-        android:paddingTop="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:padding="24dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageView
+    <com.parse.ParseImageView
         android:id="@+id/imgPhoto"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@mipmap/default_profile"
         android:layout_gravity="center"
         />
+
     <TextView
         android:text="Choose a image"
         android:layout_centerHorizontal="true"

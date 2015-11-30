@@ -73,6 +73,7 @@ public class ProfileActivity extends Activity {
                         ProfileActivity.this);
                 startActivityForResult(loginBuilder.build(), LOGIN_REQUEST);
             }
+
         }
     });
 
